@@ -1,13 +1,17 @@
 'use client'
 
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 export default function Result() {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const prompt = searchParams.get("prompt")
 
   const aiResponse = "Essa é uma resposta simulada por IA"
 
+  function handleBack() {
+    router.push("/")
+  }
   return (
     <div className="h-dvh flex  items-center justify-center">
 
@@ -23,8 +27,8 @@ export default function Result() {
           <p className="text-2xl">IA: </p>
           <p className="text-2xl">{aiResponse}</p>
         </div>
+        <button onClick={handleBack} className="p-2 font-bold text-white bg-emerald-400 rounded">Voltar</button>
       </div>
-
     </div>
   )
 }
